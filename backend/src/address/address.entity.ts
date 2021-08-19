@@ -11,7 +11,7 @@ export class Address {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ nullable: false, type: 'varchar', length: 8, unique: true })
+  @Column({ nullable: false, type: 'varchar', length: 9, unique: true })
   cep: string;
 
   @Column({ nullable: false, type: 'varchar' })
@@ -46,4 +46,12 @@ export class Address {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  public static of(params: Partial<Address>): Address {
+    const address = new Address();
+
+    Object.assign(address, params);
+
+    return address;
+  }
 }

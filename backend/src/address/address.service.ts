@@ -1,36 +1,35 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AddressRepository } from './repository/address-repository';
-import axios from 'axios';
-import { FindAddressByCep } from './dto/find-address-by-cep.dto';
-import { CreateAddress } from './dto/create-address.dto';
+import { ViaCepService } from './viacep.service';
 
 @Injectable()
 export class AddressService {
   constructor(
     @InjectRepository(AddressRepository)
     private addressRepository: AddressRepository,
+    private viaCepService: ViaCepService,
   ) {}
 
-  async findAddressByCep(values: FindAddressByCep) {
-    const address = await this.addressRepository.findAddressByCep(values);
+  async findAddressByCep(cep: string) {
+    
+    const addDashToCep = cep.slice(0, 5) + '-' + cep.slice(5);
+    const address = await this.addressRepository.findAddressByCep(addDashToCep);
 
     if (!address) {
       try {
-        const { data } = await axios.get<CreateAddress>(
-          `https://viacep.com.br/ws/${values.cep}/json/`,
-        );
+        const viaCepAddress = await this.viaCepService.getAddressByCep(cep);
 
-        if (!data)
-          throw new BadRequestException(`O cep ${values.cep} não existe.`);
+        await this.addressRepository.createAddress(viaCepAddress);
 
-        await this.addressRepository.createAddress(data);
-
-        return data;
+        return viaCepAddress;
       } catch (error) {
         throw new BadRequestException(error);
       }
     } else {
+      delete address.updatedAt;
+      delete address.createdAt;
+      delete address.id;
       return address;
     }
   }
