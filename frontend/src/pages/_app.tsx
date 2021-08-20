@@ -3,6 +3,7 @@ import { ThemeProvider } from 'styled-components'
 import { Layout } from '../components/Layout'
 import { GlobalStyle } from '../styles/global'
 import { theme } from '../styles/theme'
+import 'react-toastify/dist/ReactToastify.css'
 
 
 

@@ -51,7 +51,7 @@ export class Address {
     const address = new Address();
 
     Object.assign(address, params);
-
+  
     return address;
   }
 }

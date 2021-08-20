@@ -12,9 +12,8 @@ export class AddressService {
   ) {}
 
   async findAddressByCep(cep: string) {
-    
-    const addDashToCep = cep.slice(0, 5) + '-' + cep.slice(5);
-    const address = await this.addressRepository.findAddressByCep(addDashToCep);
+  
+    const address = await this.addressRepository.findAddressByCep(cep);
 
     if (!address) {
       try {

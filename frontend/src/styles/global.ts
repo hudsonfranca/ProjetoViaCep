@@ -7,6 +7,7 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     font-family: 'Rubik', sans-serif;
     outline: none;
+    text-decoration:none;
 }
   body {
     min-height: 100vh;

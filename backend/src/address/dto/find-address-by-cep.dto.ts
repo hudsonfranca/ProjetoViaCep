@@ -4,7 +4,7 @@ import { ApiProperty } from '@nestjs/swagger';
 export class FindAddressByCep {
   @IsNotEmpty()
   @IsString()
-  @Length(8, 8)
-  @ApiProperty({ type: String, required: true, maxLength: 8, minLength: 8 })
+  @Length(9, 9)
+  @ApiProperty({ type: String, required: true, maxLength: 9, minLength: 9 })
   cep: string;
 }

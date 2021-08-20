@@ -1,12 +1,15 @@
 import React, {useState} from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
-import  {Container, SectionOne,Form, Input, Button,List,ListItem} from '../styles/home'
+import  {Container, Section,Form,Button} from '../styles/home'
 import { useFormik } from 'formik';
 import axios from 'axios'
+import { ToastContainer, toast } from 'react-toastify';
+import InputMask from "react-input-mask";
+import { ListAddressProperties } from '../components/ListAddressProperties';
 
-interface Address {
+
+export interface AddressProps {
   cep: string,
   logradouro: string,
   complemento: string,
@@ -20,8 +23,17 @@ interface Address {
 }
 
 const Home: NextPage = () => {
-  const [address,setAddress] = useState<Address | null>();
-  const [notFound,setNotFound] = useState();
+  const [address,setAddress] = useState<AddressProps>();
+
+  const notifyError = () => toast.info('CEP não encontrado', {
+    position: "bottom-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    });;
 
   const {handleSubmit,handleChange,values} = useFormik({
     initialValues: {
@@ -29,50 +41,52 @@ const Home: NextPage = () => {
     },
     onSubmit:async ({cep}) => {
       try {
-         const {data} = await axios.get<Address>(`http://localhost:4000/api/address/find-by-cep?cep=${cep}`)
+         const {data} = await axios.get<AddressProps>(`http://localhost:4000/api/address/find-by-cep?cep=${cep}`)
+         !data && notifyError()
         setAddress(data)
       } catch (error) {
-        setAddress(null)
+        notifyError()
         console.log(error)
       }
     },
   });
   return (
       <Container>
+        <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        />
           <Head>
             <title>Buscar CEP</title>
           </Head>
-          <SectionOne>
-              <h1>Buscar CEP</h1>
-              <Form onSubmit={handleSubmit}>
-                <Input 
-                  id="cep"
-                  name="cep"
-                  type="number"
-                  onChange={handleChange}
-                  value={values.cep}
+          <Section>
+              <h1>Buscar <abbr title="Código de Endereçamento Postal">CEP</abbr></h1>
+              <Form onSubmit={handleSubmit} role="search">
+              <InputMask 
+                mask="99999-999" 
+                id="cep"
+                name="cep"
+                onChange={handleChange}
+                value={values.cep}
+                aria-required="true"
+                aria-label="Buscar CEP"
+                type="search"
                 />
-                <Button type="submit">Buscar</Button>
+
+                <Button aria-label="Buscar" type="submit">Buscar</Button>
               </Form>
-              <List>
-                {
-                  address && (
-                    <>
-                      <ListItem>CEP: {address.cep}</ListItem>
-                      <ListItem>Logradouro: {address.logradouro}</ListItem>
-                      <ListItem>Complemento: {address.complemento}</ListItem>
-                      <ListItem>Bairro: {address.bairro}</ListItem>
-                      <ListItem>Localidade: {address.localidade}</ListItem>
-                      <ListItem>UF: {address.uf}</ListItem>
-                      <ListItem>Ibge: {address.ibge}</ListItem>
-                      <ListItem>Gia: {address.gia}</ListItem>
-                      <ListItem>DDD: {address.ddd}</ListItem>
-                      <ListItem>Siafi: {address.siafi}</ListItem>
-                    </>
-                  )
-                }
-              </List>
-          </SectionOne>
+              {
+                address && ( <ListAddressProperties address={address}/>)
+              }
+             
+          </Section>
       </Container>
   )
 }
