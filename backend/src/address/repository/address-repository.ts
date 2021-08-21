@@ -5,7 +5,7 @@ import { CreateAddressDTO } from '../dto/create-address.dto';
 
 @EntityRepository(Address)
 export class AddressRepository extends Repository<Address> {
-  async findAddressByCep(cep: string) {
+  async findByCep(cep: string) {
     try {
       const address = await this.findOne({ where: { cep } });
 

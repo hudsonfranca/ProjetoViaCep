@@ -1,0 +1,22 @@
+replicaCount: 1
+
+image:
+  repository: hudsonfranca/projeto-viacep-frontend
+  tag: "latest"
+
+
+service:
+  type: ClusterIP
+  internalPort: 3000
+  externalPort: 80
+  name: http
+
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+

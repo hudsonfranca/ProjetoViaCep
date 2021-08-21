@@ -27,7 +27,7 @@ describe('AddressController', () => {
       providers:[{
         provide:AddressService,
         useValue:{
-          findAddressByCep:jest.fn().mockResolvedValue(CreatedAddress)
+          findByCep:jest.fn().mockResolvedValue(CreatedAddress)
         }
       }]
     }).compile();
@@ -44,7 +44,7 @@ describe('AddressController', () => {
   describe('findByCep',()=>{
     it('should return a Address',async()=>{
       const cep = "08090-284"
-    const addressServiceSpy = jest.spyOn(addressService,'findAddressByCep')
+    const addressServiceSpy = jest.spyOn(addressService,'findByCep')
 
         await expect(controller.findByCep(cep)).resolves.toEqual(CreatedAddress)
         expect(addressServiceSpy).toHaveBeenCalled()

@@ -5,6 +5,7 @@
 
 import { render, screen } from '@testing-library/react';
 import { ThemeProvider } from 'styled-components';
+import 'jest-styled-components'
 
 import {ListAddressProperties} from '../';
 import { theme } from '../../../styles/theme';
@@ -41,6 +42,11 @@ const renderComponent = (props = {}) => {
 };
 
 describe('<ListAddressProperties/>',()=>{
+
+  it('<ListAddressProperties/> Snapshot test', () => {
+    const {container} = renderComponent()
+    expect(container).toMatchSnapshot()
+  })
 
   it('shows the correct cep' ,()=>{
     renderComponent()

@@ -1,0 +1,61 @@
+host: projetoviacep.com
+
+postgresql:
+  postgresqlPassword: password
+  postgresqlDatabase: address
+  service.type: ClusterIP
+
+projeto-viacep-backend:
+
+#   replicaCount: 1
+
+#   image:
+#     repository: hudsonfranca/projeto-viacep-backend
+#     tag: "latest"
+
+#   service:
+#     type: ClusterIP
+#     internalPort: 4000
+#     externalPort: 80
+#     name: http
+
+  resources:
+    limits:
+      cpu: "0.5"
+      memory: "270Mi"
+    requests:
+      cpu: "0.5"
+      memory: "270Mi"
+
+  database:
+    user: postgres
+    host: projeto-viacep-chart-postgresql
+    port: 5432
+    database: address
+    password: cGFzc3dvcmQ=
+
+
+# projeto-viacep-frontend:
+
+#   replicaCount: 1
+
+#   image:
+#     repository: hudsonfranca/projeto-viacep-frontend
+#     tag: "latest"
+
+#   service:
+#     type: ClusterIP
+#     internalPort: 3000
+#     externalPort: 80
+#     name: http
+
+#   resources:
+#     limits:
+#       cpu: 100m
+#       memory: 128Mi
+#     requests:
+#       cpu: 100m
+#       memory: 128Mi
+
+
+

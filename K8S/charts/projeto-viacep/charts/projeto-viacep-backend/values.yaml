@@ -1,0 +1,28 @@
+replicaCount: 1
+
+image:
+  repository: hudsonfranca/projeto-viacep-backend
+  tag: "latest"
+
+
+service:
+  type: ClusterIP
+  internalPort: 4000
+  externalPort: 80
+  name: http
+
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+database:
+  user: postgres
+  host: 
+  port: 5432
+  database: address
+  password: cGFzc3dvcmQ=

@@ -1,0 +1,150 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ListAddressProperties/> <ListAddressProperties/> Snapshot test 1`] = `
+.c0 {
+  height: auto;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.c1 {
+  height: 50px;
+  width: 100%;
+  border-bottom: 1px solid #fff;
+  font-size: 1.5rem;
+  padding: 26px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+
+@media (max-width:413px) {
+  .c1 {
+    font-size: 1.3rem;
+  }
+}
+
+<div>
+  <ul
+    aria-label="Lista de propriedades do endereço"
+    class="c0"
+    style="padding: 20px;"
+  >
+    <li
+      aria-label="cep"
+      class="c1"
+    >
+      <abbr
+        title="Código de Endereçamento Postal"
+      >
+        CEP
+      </abbr>
+      : 
+      01001-000
+    </li>
+    <li
+      aria-label="logradouro"
+      class="c1"
+    >
+      Logradouro: 
+      Praça da Sé
+    </li>
+    <li
+      aria-label="complemento"
+      class="c1"
+    >
+      Complemento: 
+      lado ímpar
+    </li>
+    <li
+      aria-label="bairro"
+      class="c1"
+    >
+      Bairro: 
+      Sé
+    </li>
+    <li
+      aria-label="localidade"
+      class="c1"
+    >
+      Localidade: 
+      São Paulo
+    </li>
+    <li
+      aria-label="uf"
+      class="c1"
+    >
+      <abbr
+        title="Unidade Federativa"
+      >
+        UF
+      </abbr>
+      : 
+      SP
+    </li>
+    <li
+      aria-label="ibge"
+      class="c1"
+    >
+       
+      <abbr
+        title="Instituto Brasileiro de Geografia e Estatística"
+      >
+        IBGE
+      </abbr>
+      : 
+      3550308
+    </li>
+    <li
+      aria-label="gia"
+      class="c1"
+    >
+       
+      <abbr
+        title="Guia de Informação e Apuração do ICMS"
+      >
+        GIA
+      </abbr>
+      : 
+      1004
+    </li>
+    <li
+      aria-label="ddd"
+      class="c1"
+    >
+       
+      <abbr
+        title="Discagem direta a distância"
+      >
+        DDD
+      </abbr>
+      : 
+      11
+    </li>
+    <li
+      aria-label="siafi"
+      class="c1"
+    >
+       
+      <abbr
+        title="Sistema Integrado de Administração Financeira"
+      >
+        SIAFI
+      </abbr>
+      : 
+      7107
+    </li>
+  </ul>
+</div>
+`;

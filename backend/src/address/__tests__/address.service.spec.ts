@@ -39,12 +39,12 @@ describe('AddressService', () => {
         AddressService,{
           provide:ViaCepService,
           useValue:{
-            getAddressByCep:jest.fn().mockResolvedValue(address)
+            findCep:jest.fn().mockResolvedValue(address)
           }
         },{
           provide:getRepositoryToken(AddressRepository),
           useValue:{
-            findAddressByCep:jest.fn().mockResolvedValue(CreatedAddress),
+            findByCep:jest.fn().mockResolvedValue(CreatedAddress),
             createAddress:jest.fn().mockResolvedValue(CreatedAddress)
           }
         }],
@@ -61,20 +61,27 @@ describe('AddressService', () => {
     expect(addressRepository).toBeDefined();
   });
 
-  it('should call findAddressByCep from addressRepository ',async()=>{
-    const cep = "08090-284"
-    const addressRepositorySpy = jest.spyOn(addressRepository,'findAddressByCep')
-    const resut = await service.findAddressByCep(cep);    
-    expect(resut).toEqual(address);
-    expect(addressRepositorySpy).toHaveBeenCalledWith(cep);
+  describe('findByCep',()=>{
+    it('must call findByCep from addressRepository ',async()=>{
+      const cep = "08090-284"
+      const addressRepositorySpy = jest.spyOn(addressRepository,'findByCep')
+      const resut = await service.findByCep(cep);    
+      expect(resut).toEqual(address);
+      expect(addressRepositorySpy).toHaveBeenCalledWith(cep);
+      expect(addressRepositorySpy).toHaveBeenCalled();
+  
+    })
+  
+    it('must call findCep from ViaCepService if no address is found in the database',async()=>{
+      const cep = "08090-284"
+      const viaCepServiceSpy = jest.spyOn(viaCepService,'findCep')
+      jest.spyOn(addressRepository,'findByCep').mockResolvedValue(null)
+      const resut = await service.findByCep(cep);    
+      expect(resut).toEqual(address);
+      expect(viaCepServiceSpy).toHaveBeenCalledWith(cep);
+      expect(viaCepServiceSpy).toHaveBeenCalled();
+    })
   })
 
-  it('should call findAddressByCep from ViaCepService ',async()=>{
-    const cep = "08090-284"
-    const viaCepServiceSpy = jest.spyOn(viaCepService,'getAddressByCep')
-    jest.spyOn(addressRepository,'findAddressByCep').mockResolvedValue(null)
-    const resut = await service.findAddressByCep(cep);    
-    expect(resut).toEqual(address);
-    expect(viaCepServiceSpy).toHaveBeenCalledWith(cep);
-  })
+ 
 });

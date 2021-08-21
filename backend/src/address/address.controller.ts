@@ -21,7 +21,7 @@ export class AddressController {
   @ApiBadRequestResponse()
   @ApiQuery({ name: 'cep', type: FindAddressByCep })
   async findByCep(@Query('cep') cep: string) {
-    const address = await this.addressService.findAddressByCep(cep);
+    const address = await this.addressService.findByCep(cep);
     return address;
   }
 }

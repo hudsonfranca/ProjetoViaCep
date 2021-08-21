@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: {{ .Release.Name }}-backend-deployment
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-backend-deployment
+  replicas: {{ default 1 .Values.replicaCount | int }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-backend-deployment
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        ports:
+        - containerPort: 4000
+        resources:
+          limits:
+            cpu: {{ .Values.resources.limits.cpu }}
+            memory: {{ .Values.resources.limits.memory }}
+          requests:
+            cpu: {{ .Values.resources.requests.cpu }}
+            memory: {{ .Values.resources.requests.cpu }}
+        env:
+          - name: PG_USER
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Release.Name }}-database-configmap
+                key: db_user
+          - name: PG_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Release.Name }}-database-configmap
+                key: db_host
+          - name: PG_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Release.Name }}-database-configmap
+                key: pg_port
+          - name: PG_DATABASE
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Release.Name }}-database-configmap
+                key: database
+          - name: PG_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-database-secret
+                key: db_password

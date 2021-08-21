@@ -11,13 +11,13 @@ export class AddressService {
     private viaCepService: ViaCepService,
   ) {}
 
-  async findAddressByCep(cep: string) {
+  async findByCep(cep: string) {
   
-    const address = await this.addressRepository.findAddressByCep(cep);
+    const address = await this.addressRepository.findByCep(cep);
 
     if (!address) {
       try {
-        const viaCepAddress = await this.viaCepService.getAddressByCep(cep);
+        const viaCepAddress = await this.viaCepService.findCep(cep);
 
         await this.addressRepository.createAddress(viaCepAddress);
 
