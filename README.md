@@ -36,6 +36,8 @@ Tabela de conteúdos
       * [Docker Compose](#docker-compose)
       * [Kubernetes](#kubernetes)
    * [Tests](#testes)
+      * [Testar o Frontend](#testar-o-frontend)
+      * [Testar o Backend](#testar-o-backend)
    * [Tecnologias](#tecnologias)
 <!--te-->
 
@@ -118,18 +120,14 @@ $ helm uninstall projeto-viacep
 <br/>
 
 ## Testes
+<br/>
+<br/>
+
+### Testar o Frontend
 
 ```bash
-# Clone o repositório do projeto
-$ git clone https://github.com/hudsonfranca/ProjetoViaCep.git
-
 # Acesse a pasta do projeto no terminal/cmd
 $ cd ProjetoViaCep
-
- 
----------------------------------------------------------------
-
-# Testar o Frontend
 
 # Acesse a pasta frontend no terminal/cmd
 $ cd frontend
@@ -140,9 +138,19 @@ $ yarn install
 # Execute o comando
 $ yarn test
 
----------------------------------------------------------------
+```
+<p>
+<img src="images/front.png">
+</p>
 
-# Testar o Backend
+<br/>
+<br/>
+
+### Testar o Backend
+
+```bash
+# Acesse a pasta do projeto no terminal/cmd
+$ cd ProjetoViaCep
 
 # Acesse a pasta backend no terminal/cmd
 $ cd backend
@@ -154,6 +162,9 @@ $ yarn install
 $ yarn test
 
 ```
+<p>
+<img src="images/back.png">
+</p>
 
 <br/>
 <br/>
