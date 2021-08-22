@@ -15,7 +15,10 @@ resources:
 
 database:
   user: postgres
-  host: projeto-viacep-postgresql
+  ## O host é formado pelo nome do Release e "-postgresql"
+  ## ex: se o Release name for "projeto-viacep", o host vai ser: projeto-viacep-postgresql 
+  host: projeto-viacep-postgresql 
   port: 5432
   database: address
+  ## password deve ser no formato base64
   password: cGFzc3dvcmQ=

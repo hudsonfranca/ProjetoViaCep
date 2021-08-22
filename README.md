@@ -105,11 +105,14 @@ $ helm install projeto-viacep projeto-viacep
 # Para acessar a aplicação você precisará pegar o IP do minikube, execute o seguinte comando
 $ minikube ip
 
-# Por exemplo se o IP do minikube for 192.168.49.2, você terá que acessar a url < http://192.168.49.2/ > no navegador.
-# Se você quiser acessar a documentação da API acesse < http://192.168.49.2/api/ > no navegador.
+# Por exemplo se o IP do minikube for 192.168.49.2, você terá que acessar a url 
+# < http://192.168.49.2/ > no seu navegador.
+# Se você quiser acessar a documentação da API acesse < http://192.168.49.2/api/ >
+# no seu navegador.
 
 # Se você quiser mudar algum parametro como o número de replicas do
-# backend, edite o arquivo values.yaml que está na pasta K8S/charts/projeto-viacep/values.yaml . 
+# backend ou a senha do banco de dados, edite o arquivo values.yaml que está na 
+# pasta K8S/charts/projeto-viacep/values.yaml . 
 
 # Desinstalar o chart do projeto
 $ helm uninstall projeto-viacep
