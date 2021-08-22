@@ -41,7 +41,7 @@ const Home: NextPage = () => {
     },
     onSubmit:async ({cep}) => {
       try {
-         const {data} = await axios.get<AddressProps>(`api/address/find-by-cep?cep=${cep}`)
+         const {data} = await axios.get<AddressProps>(`http://localhost:4000/api/address/find-by-cep?cep=${cep}`)
          !data && notifyError()
         setAddress(data)
       } catch (error) {

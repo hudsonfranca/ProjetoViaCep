@@ -2,27 +2,20 @@ replicaCount: 1
 
 image:
   repository: hudsonfranca/projeto-viacep-backend
-  tag: "latest"
-
-
-service:
-  type: ClusterIP
-  internalPort: 4000
-  externalPort: 80
-  name: http
+  tag: "k8s"
 
 
 resources:
   limits:
-    cpu: 100m
-    memory: 128Mi
+    cpu: "0.5"
+    memory: 270Mi
   requests:
-    cpu: 100m
-    memory: 128Mi
+    cpu: "0.5"
+    memory: 270Mi
 
 database:
   user: postgres
-  host: 
+  host: projeto-viacep-postgresql
   port: 5432
   database: address
   password: cGFzc3dvcmQ=

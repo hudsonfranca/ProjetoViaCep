@@ -5,11 +5,11 @@ metadata:
   labels:
     app: {{ .Release.Name }}-backend-service
 spec:
-  type: {{ .Values.service.type }}
+  type: ClusterIP
   ports:
-  - port: {{ .Values.service.externalPort }}
-    targetPort: {{ .Values.service.internalPort }}
+  - port: 80
+    targetPort: 4000
     protocol: TCP
-    name: {{ .Values.service.name }}
+    name: http
   selector:
     app: {{ .Release.Name }}-backend-deployment

@@ -28,7 +28,6 @@ services:
       - PG_USER=root
       - PG_PASSWORD=password
       - PG_DATABASE=postgres
-      - BACKEND_URL=http://localhost:4000
       - PORT=4000
       - JWT_KEY=c2VjcmV0
     ports: 
@@ -39,22 +38,22 @@ services:
     depends_on: 
       - postgres
     restart: always
-  # frontend:
-  #   container_name: anuncios-frontend
-  #   ports:
-  #     - "3000:3000"
-  #   build: 
-  #     context: frontend
-  #     dockerfile: Dockerfile
-  #   volumes: 
-  #     - ./frontend:/usr/src/app
-  #     - /usr/src/app/node_modules
-  #     - /usr/src/app/.next
-  #   networks: 
-  #     - projetoViaCep
-  #   depends_on: 
-  #     - backend
-  #   restart: always
+  frontend:
+    container_name: projeto-viacep-frontend
+    ports:
+      - "3000:3000"
+    build: 
+      context: frontend
+      dockerfile: Dockerfile
+    volumes: 
+      - ./frontend:/usr/src/app
+      - /usr/src/app/node_modules
+      - /usr/src/app/.next
+    networks: 
+      - projetoViaCep
+    depends_on: 
+      - backend
+    restart: always
   adminer:
     image: adminer
     depends_on: 
