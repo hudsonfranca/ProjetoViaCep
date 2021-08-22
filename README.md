@@ -125,6 +125,7 @@ $ git clone https://github.com/hudsonfranca/ProjetoViaCep.git
 
 # Acesse a pasta do projeto no terminal/cmd
 $ cd ProjetoViaCep
+
  
 ---------------------------------------------------------------
 
@@ -133,20 +134,24 @@ $ cd ProjetoViaCep
 # Acesse a pasta frontend no terminal/cmd
 $ cd frontend
 
+# instale as dependências
+$ yarn install
+
 # Execute o comando
-$ yarn test:watch
+$ yarn test
 
 ---------------------------------------------------------------
-
 
 # Testar o Backend
 
 # Acesse a pasta backend no terminal/cmd
-
 $ cd backend
 
+# instale as dependências
+$ yarn install
+
 # Execute o comando
-$ yarn test:watch
+$ yarn test
 
 ```
 
